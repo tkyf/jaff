@@ -7,6 +7,11 @@ ADD_TAG = '+'
 del_tag = '-'
 SUB_TAG = '/'
 
+def align(self, src1, src2):
+    aligned = (u"", u"", u"")
+    return aligned
+
+
 class EditDistance(object):
 
     def __init__(self, is_test=False):
@@ -15,10 +20,6 @@ class EditDistance(object):
         """
 
         self.is_test = is_test
-
-    def align(self, src1, src2):
-        aligned = (u"", u"", u"")
-        return aligned
 
     def build_edit_graph(self, src, dst):
         """[FUNCTIONS] 二つの文字列間のエディットグラフを作る。
