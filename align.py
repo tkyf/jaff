@@ -7,7 +7,7 @@ ADD_TAG = '+'
 del_tag = '-'
 SUB_TAG = '/'
 
-def align(self, src1, src2):
+def align(src1, src2):
     aligned = (u"", u"", u"")
     return aligned
 

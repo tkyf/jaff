@@ -17,7 +17,7 @@ class Test(unittest.TestCase):
             ]
 
     def test_compare(self):
-        self.assertEqual(align.align(input[0][0], input[0][1]), self.expect[0])
+        self.assertEqual(align.align(self.input[0][0], self.input[0][1]), self.expect[0])
 
 if __name__ == "__main__":
     unittest.main()
