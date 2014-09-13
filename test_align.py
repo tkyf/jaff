@@ -3,7 +3,7 @@
 
 import unittest
 
-import align
+import align.align
 
 class Test(unittest.TestCase):
     def setUp(self):
