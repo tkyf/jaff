@@ -8,12 +8,12 @@ import align.align
 class Test(unittest.TestCase):
     def setUp(self):
         self.input = [
-            (u"こんにちはわたしは元気です", u"こにちわわちしは元気でした")
+            ("こんにちはわたしは元気です", "こにちわわちしは元気でした")
             ]
         self.expect = [
-            (u"こんにちは\tわたし\tは\t元気\tです",
-                u"こにちわ\tわちし\tは\t元気\tでした",
-                u"感動詞\t名詞\t助詞\t名詞\t助動詞")
+            ("こんにちは\tわたし\tは\t元気\tです",
+                "こにちわ\tわちし\tは\t元気\tでした",
+                "感動詞\t名詞\t助詞\t名詞\t助動詞")
             ]
 
     def test_compare(self):
@@ -21,3 +21,4 @@ class Test(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

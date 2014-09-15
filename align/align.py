@@ -8,7 +8,7 @@ del_tag = '-'
 SUB_TAG = '/'
 
 def align(src1, src2):
-    aligned = (u"", u"", u"")
+    aligned = ("", "", "")
     return aligned
 
 
