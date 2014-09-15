@@ -4,7 +4,7 @@ from __future__ import print_function
 # 編集タグ
 EQ_TAG =  '.'
 ADD_TAG = '+'
-del_tag = '-'
+DEL_TAG = '-'
 SUB_TAG = '/'
 
 def align(src1, src2):
@@ -167,7 +167,7 @@ class EditDistance(object):
                           + '(' + str(dst_index) + ')')
                 dst_index += 1
             elif e == 'del':
-                tag_str += del_tag
+                tag_str += DEL_TAG
                 src_str+= src[src_index]
                 dst_str += u'＿'
                 if self.is_test:
