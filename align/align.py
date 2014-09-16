@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 
 # 編集タグ
 EQ_TAG =  '.'
@@ -8,6 +8,9 @@ DEL_TAG = '-'
 SUB_TAG = '/'
 
 def align(src1, src2):
+    ed = EditDistance()
+    ed.extract_word_sub(src1, src2)
+    print(ed)
     aligned = ("", "", "")
     return aligned
 
