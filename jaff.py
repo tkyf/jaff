@@ -13,7 +13,7 @@ def main():
     base = sys.argv[1]
     target = sys.argv[2]
 
-    alignment = align.align(base, target)
+    alignment = align.align.align(base, target)
     print(alignment)
 
     return 0
