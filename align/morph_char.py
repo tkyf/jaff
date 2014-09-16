@@ -44,12 +44,7 @@ def str_to_morphed_chars(src):
     [MorphedChar]
  
     """
-    if isinstance(src, unicode):
-        morphed = tagger.parse(src.encode('utf_8'))
-    elif isinstance(src, str):
-        morphed = tagger.parse(src)
-
-    morphed = unicode(morphed, 'utf_8')
+    morphed = tagger.parse(src)
 
     splited = morphed.split(u'\n')
 
@@ -62,7 +57,7 @@ def str_to_morphed_chars(src):
 
         n = len(feature[0])
         if n > 1: #2文字以上からなる単語の場合
-            for i in xrange(0, n - 1):
+            for i in range(0, n - 1):
                 cs.append(MorphedChar(feature[0][i+1], feature[pos_index], u'I'))
     return cs
 

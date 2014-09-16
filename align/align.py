@@ -40,16 +40,16 @@ class EditDistance(object):
         m = [[0] * (len(dst)+1) for i in range(len(src) +1)]
 
         # LD(i,0)となる自明な箇所の初期化
-        for i in xrange(len(src) + 1):
+        for i in range(len(src) + 1):
             m[i][0] = i
 
         # LD(0,j)となる自明な箇所の初期化
-        for j in xrange(len(dst)+1):
+        for j in range(len(dst)+1):
             m[0][j] = j
 
         # エディットグラフの値を埋める。
-        for i in xrange(1, len(src) + 1):
-            for j in xrange(1, len(dst) + 1):
+        for i in range(1, len(src) + 1):
+            for j in range(1, len(dst) + 1):
                 if src[i - 1] == dst[j - 1]:
                     x = 0
                 else:
@@ -206,7 +206,7 @@ class EditDistance(object):
 
         for i, d in enumerate(dst_str):
             if d == u'＿':
-                morphed_chars.insert(i, morph_char.MorphedChar(u'＿', u'X', u'X'))
+                morphed_chars.insert(i, align.morph_char.MorphedChar(u'＿', u'X', u'X'))
 
 
     def extract_word_sub(self, src, dst):
