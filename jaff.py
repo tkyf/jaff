@@ -7,7 +7,7 @@ def main():
     import align.align
 
     if len(sys.argv) != 3:
-        print("Usage: $ python jaff textfile1 textfile2")
+        print("Usage: $ python jaff.py textfile1 textfile2")
         return 1
     
     base = sys.argv[1]
