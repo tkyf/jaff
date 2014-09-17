@@ -202,11 +202,11 @@ class EditDistance(object):
         dst_strはbuild_edit_rev関数で処理された形式とする。
 
         """
-        import align.morph_char 
+        import alignment.morph_char 
 
         for i, d in enumerate(dst_str):
             if d == u'＿':
-                morphed_chars.insert(i, align.morph_char.MorphedChar(u'＿', u'X', u'X'))
+                morphed_chars.insert(i, alignment.morph_char.MorphedChar(u'＿', u'X', u'X'))
 
 
     def extract_word_sub(self, src, dst):
@@ -221,7 +221,7 @@ class EditDistance(object):
         [(src_strでの表現, dst_strでの表現)]  :: [(unicode, [MorphedChar])]
         """
 
-        from align.morph_char import str_to_morphed_chars
+        from alignment.morph_char import str_to_morphed_chars
 
         edit_rev_triple = self.build_edit_rev(src, dst)
         dst_morphed_chars = str_to_morphed_chars(dst)

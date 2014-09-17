@@ -3,7 +3,7 @@
 
 import unittest
 
-import align.align
+from alignment.align import align
 
 class Test(unittest.TestCase):
     def setUp(self):
@@ -17,7 +17,7 @@ class Test(unittest.TestCase):
             ]
 
     def test_compare(self):
-        self.assertEqual(align.align.align(self.input[0][0], self.input[0][1]), self.expect[0])
+        self.assertEqual(align(self.input[0][0], self.input[0][1]), self.expect[0])
 
 if __name__ == "__main__":
     unittest.main()
