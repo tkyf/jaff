@@ -11,6 +11,7 @@ except RuntimeError:
     tagger = MeCab.Tagger('-Ounidic')
     pos_index = 4
 
+
 class MorphedChar:
     """[CLASSES] 形態素解析された一つの文字を表す．
     この文字は品詞と単語中での位置を持つ
@@ -21,17 +22,18 @@ class MorphedChar:
         Keyword arguments:
         sruface -- surface of charactor : unicode
         pos     -- surface of word      : unicode
-        position -- position of charactor in word. :unicode 
+        position -- position of charactor in word. :unicode
                     B: begin of word. I: inter of word.
 
         例： surface  : 人
              pos      : 名詞
-             position : B 
+             position : B
         """
 
         self.surface = surface
         self.pos = pos
         self.position = position  # B:先頭，I:文中
+
 
 def str_to_morphed_chars(src):
     """[FUNCTIONS]文字列を受け取り，MeCabで形態素解析して、
@@ -42,7 +44,7 @@ def str_to_morphed_chars(src):
 
     Return value:
     [MorphedChar]
- 
+
     """
     morphed = tagger.parse(src)
 
@@ -56,17 +58,18 @@ def str_to_morphed_chars(src):
         cs.append(MorphedChar(feature[0][0], feature[pos_index], u'B'))
 
         n = len(feature[0])
-        if n > 1: #2文字以上からなる単語の場合
+        if n > 1:  # 2文字以上からなる単語の場合
             for i in range(0, n - 1):
                 cs.append(MorphedChar(feature[0][i+1], feature[pos_index], u'I'))
     return cs
+
 
 def main():
     src = u'庭には二羽にわとりがいる'
     print(src)
     morphed_chars = str_to_morphed_chars(src)
     for morphed_char in morphed_chars:
-        print(morphed_char.surface.encode('cp932') , morphed_char.pos.encode('cp932') , morphed_char.position.encode('cp932'))
+        print(morphed_char.surface.encode('cp932'), morphed_char.pos.encode('cp932'), morphed_char.position.encode('cp932'))
 
 
 if __name__ == "__main__":

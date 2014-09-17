@@ -2,19 +2,19 @@
 
 
 # 編集タグ
-EQ_TAG =  '.'
+EQ_TAG = '.'
 ADD_TAG = '+'
 DEL_TAG = '-'
 SUB_TAG = '/'
 
+
 def align(src1, src2):
     ed = EditDistance()
-    ed.extract_word_sub(src1, src2)
-    print(ed)
-    aligned = ("", "", "")
+    aligned = ed.extract_word_sub(src1, src2)
     return aligned
 
 
+# Needleman-Wunsch algorithm?
 class EditDistance(object):
 
     def __init__(self, is_test=False):
@@ -37,7 +37,7 @@ class EditDistance(object):
         """
         # DPで使うエディットグラフ用の2次元配列の初期化。
         # サイズは系列src,dstの文字数+1(("","")があるため)
-        m = [[0] * (len(dst)+1) for i in range(len(src) +1)]
+        m = [[0] * (len(dst) + 1) for i in range(len(src) + 1)]
 
         # LD(i,0)となる自明な箇所の初期化
         for i in range(len(src) + 1):
@@ -63,7 +63,7 @@ class EditDistance(object):
             print("")
 
             print('len(src) = ' + str(len(src)))
-            print('i = ' + str(i))# i, jは最後の値になっていることを確認
+            print('i = ' + str(i))  # i, jは最後の値になっていることを確認
             print('len(dst) = ' + str(len(dst)))
             print('j = ' + str(j))
             print('[i][j] = ' + str(m[i][j]))
@@ -72,7 +72,6 @@ class EditDistance(object):
             print('len(m[0]) = ' + str(len(m[0])))
 
         return m
-
 
     def build_edit_trail(self, src, dst):
         """[FUNCTIONS] エディットグラフを終端（最も右下）から左上にたどり、
@@ -84,19 +83,19 @@ class EditDistance(object):
         """
         m = self.build_edit_graph(src, dst)
 
-        #最後からたどるために、最も右下のインデックスを得る
+        # 最後からたどるために、最も右下のインデックスを得る
         now_i = len(m) - 1
         now_j = len(m[0]) - 1
         now = m[now_i][now_j]
 
-        edit_trail = [] # 逆からたどった経路
+        edit_trail = []  # 逆からたどった経路
         while(now_i > 0 or now_j > 0):
             up_num = m[now_i - 1][now_j]
-            diagonal_num = m[now_i -1][now_j - 1]
+            diagonal_num = m[now_i - 1][now_j - 1]
             left_num = m[now_i][now_j - 1]
 
             # 優先順位は eq(diagonal), del(up), add(left)の順
-            min_list = [ diagonal_num, up_num, left_num]
+            min_list = [diagonal_num, up_num, left_num]
             min_num = min(min_list)
             min_index = min_list.index(min_num)
             # これで、左・斜め・上のどのスコアが最も小さいか分かった。
@@ -115,7 +114,7 @@ class EditDistance(object):
                 now_j -= 1
                 edit_trail.append('eq')
             else:
-                #if left_num <= up_num:
+                # if left_num <= up_num:
                 if min_index == 2:
                     now_j -= 1
                     edit_trail.append('add')
@@ -126,7 +125,6 @@ class EditDistance(object):
 
         # 左上からの編集履歴を得るために、reverseする。
         return list(reversed(edit_trail))
-
 
     def build_edit_rev(self, src, dst):
         """[FUNCTIONS] 編集タグ、変更前文字列、変更後文字列の三つ組を作る。
@@ -157,7 +155,7 @@ class EditDistance(object):
                 src_str += src[src_index]
                 dst_str += dst[dst_index]
                 if self.is_test:
-                    print('eq  :' + src[src_index] + '->' \
+                    print('eq  :' + src[src_index] + '->'
                           + dst[dst_index] + '(' + str(dst_index) + ')')
                 src_index += 1
                 dst_index += 1
@@ -166,15 +164,15 @@ class EditDistance(object):
                 src_str += u'＿'
                 dst_str += dst[dst_index]
                 if self.is_test:
-                    print('add :' + u'＿' + '->' + dst[dst_index] \
+                    print('add :' + u'＿' + '->' + dst[dst_index]
                           + '(' + str(dst_index) + ')')
                 dst_index += 1
             elif e == 'del':
                 tag_str += DEL_TAG
-                src_str+= src[src_index]
+                src_str += src[src_index]
                 dst_str += u'＿'
                 if self.is_test:
-                    print('del :' + src[src_index] + '->' \
+                    print('del :' + src[src_index] + '->'
                           + u'＿' + '(' + str(dst_index) + ')')
                 src_index += 1
             elif e == 'sub':
@@ -182,7 +180,7 @@ class EditDistance(object):
                 src_str += src[src_index]
                 dst_str += dst[dst_index]
                 if self.is_test:
-                    print('sub :' + src[src_index] + '->' \
+                    print('sub :' + src[src_index] + '->'
                           + dst[dst_index] + '(' + str(dst_index) + ')')
                 src_index += 1
                 dst_index += 1
@@ -190,24 +188,22 @@ class EditDistance(object):
                 print('this tag is not defiened')
 
         if self.is_test:
-             print(tag_str)
-             print(src_str)
-             print(dst_str)
-        
+            print(tag_str)
+            print(src_str)
+            print(dst_str)
+
         return (tag_str, src_str, dst_str)
 
-
     def blank_insert(self, dst_str, morphed_chars):
-        """[FUNCTIONS] morphed_charsにdst_strと同じ位置に＿を挿入する。 
+        """[FUNCTIONS] morphed_charsにdst_strと同じ位置に＿を挿入する。
         dst_strはbuild_edit_rev関数で処理された形式とする。
 
         """
-        import alignment.morph_char 
+        import alignment.morph_char
 
         for i, d in enumerate(dst_str):
             if d == u'＿':
                 morphed_chars.insert(i, alignment.morph_char.MorphedChar(u'＿', u'X', u'X'))
-
 
     def extract_word_sub(self, src, dst):
         """[FUNCTIONS] 二つの文の置換された箇所のペアのリストを作る。
@@ -236,24 +232,24 @@ class EditDistance(object):
         word_begin = 0
         word_end   = 0
         in_word    = False
-        for i, (t, s, d) in enumerate(zip(tag_str,src_str,
+        for i, (t, s, d) in enumerate(zip(tag_str, src_str,
                                           dst_morphed_chars)):
             if in_word:
                 if d.position == u'B':
                     if t == ADD_TAG and tag_str[i-1] != EQ_TAG:
                         pass
                     else:
-                        word_end   = i
-                        sub_list.append([src_str[word_begin:word_end], 
-                            dst_morphed_chars[word_begin:word_end]])
+                        word_end = i
+                        sub_list.append([src_str[word_begin:word_end],
+                                         dst_morphed_chars[word_begin:word_end]])
                         word_begin = i
             else:
                 if d.position == u'B':
                     in_word = True
                     word_begin = i
 
-        sub_list.append([src_str[word_begin:], 
-            dst_morphed_chars[word_begin:]])
+        sub_list.append([src_str[word_begin:],
+                         dst_morphed_chars[word_begin:]])
 
         sub_list = self.blank_delete(sub_list)
 
@@ -272,7 +268,6 @@ class EditDistance(object):
                     after.append(morphedchar)
             clear_sub_list.append(tuple([before, after]))
         return clear_sub_list
-
 
     def shortest_edit_script(self, src, dst):
         """[FUNCTIONS] 二つの文字列の編集距離を返す。

@@ -1,9 +1,10 @@
 #!/usr/bin/env python
-#coding:utf-8
+# coding:utf-8
 
 import unittest
 
 from alignment.align import align
+
 
 class Test(unittest.TestCase):
     def setUp(self):
@@ -19,6 +20,6 @@ class Test(unittest.TestCase):
     def test_compare(self):
         self.assertEqual(align(self.input[0][0], self.input[0][1]), self.expect[0])
 
+
 if __name__ == "__main__":
     unittest.main()
-
