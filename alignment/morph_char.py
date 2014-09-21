@@ -67,7 +67,7 @@ def main():
     print(src)
     morphed_chars = str_to_morphed_chars(src)
     for morphed_char in morphed_chars:
-        print(morphed_char.surface.encode('cp932'), morphed_char.pos.encode('cp932'), morphed_char.position.encode('cp932'))
+        print(morphed_char.surface, morphed_char.pos, morphed_char.position)
 
 
 if __name__ == "__main__":
