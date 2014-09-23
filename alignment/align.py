@@ -15,6 +15,15 @@ def align(src1, src2):
 
 
 # Needleman-Wunsch algorithm?
+
+class NW(object):
+    """
+    Needleman-Wunsch algrithm for string.
+    """
+    def __init__(self):
+        pass
+
+
 class EditDistance(object):
 
     def __init__(self, is_test=False):
@@ -282,4 +291,3 @@ class EditDistance(object):
 
         edit_graph = self.build_edit_graph(src, dst)
         return edit_graph[-1][-1]
-
