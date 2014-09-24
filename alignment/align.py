@@ -23,6 +23,12 @@ class NW(object):
     def __init__(self):
         pass
 
+    def align(this, src1, src2):
+        return ("", "")
+
+    def align_with_pos(this, src1, src2):
+        return ("", "", "")
+
 
 class EditDistance(object):
 

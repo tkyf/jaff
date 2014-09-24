@@ -5,7 +5,7 @@
 def main():
     import sys
 
-    from alignment.align import align
+    from alignment.align import NW
 
     if len(sys.argv) != 3:
         print("Usage: $ python jaff.py textfile1 textfile2")
@@ -14,7 +14,8 @@ def main():
     base = sys.argv[1]
     target = sys.argv[2]
 
-    alignment = align(base, target)
+    nw = NW()
+    alignment = nw.align(base, target)
     print(alignment)
 
     return 0
