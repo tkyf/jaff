@@ -14,8 +14,7 @@ def align(src1, src2):
     return aligned
 
 
-# Needleman-Wunsch algorithm?
-
+# Needleman-Wunsch algorithm
 class NW(object):
     """
     Needleman-Wunsch algrithm for string.
@@ -28,6 +27,13 @@ class NW(object):
 
     def align_with_pos(this, src1, src2):
         return ("", "", "")
+
+    def fill_in_table(this, src1, src2):
+        pass
+
+    def traceback(this, src1, src2):
+        pass
+
 
 
 class EditDistance(object):
