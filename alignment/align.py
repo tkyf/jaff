@@ -31,7 +31,7 @@ class NW(object):
     def fill_in_table(this, src1, src2):
         pass
 
-    def traceback(this, src1, src2):
+    def trace_back(this, src1, src2):
         pass
 
 
