@@ -8,9 +8,9 @@ DEL_TAG = '-'
 SUB_TAG = '/'
 
 
-def align(src1, src2):
+def align(str1, str2):
     ed = EditDistance()
-    aligned = ed.extract_word_sub(src1, src2)
+    aligned = ed.extract_word_sub(str1, str2)
     return aligned
 
 
@@ -22,18 +22,17 @@ class NW(object):
     def __init__(self):
         pass
 
-    def align(this, src1, src2):
+    def align(this, str1, str2):
         return ("", "")
 
-    def align_with_pos(this, src1, src2):
+    def align_with_pos(this, str1, str2):
         return ("", "", "")
 
-    def fill_in_table(this, src1, src2):
+    def fill_in_table(this, str1, str2):
         pass
 
-    def trace_back(this, src1, src2):
+    def trace_back(this, str1, str2):
         pass
-
 
 
 class EditDistance(object):
