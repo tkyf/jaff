@@ -19,19 +19,22 @@ class NW(object):
     """
     Needleman-Wunsch algrithm for string.
     """
+
+    _intermediate_table = []
+
     def __init__(self):
         pass
 
-    def align(this, str1, str2):
+    def align(self, str1, str2):
         return ("", "")
 
-    def align_with_pos(this, str1, str2):
+    def align_with_pos(self, str1, str2):
         return ("", "", "")
 
-    def fill_in_table(this, str1, str2):
+    def fill_in_table(self, str1, str2):
         pass
 
-    def trace_back(this, str1, str2):
+    def trace_back(self, str1, str2):
         pass
 
 
@@ -92,6 +95,8 @@ class EditDistance(object):
             print('len(m[0]) = ' + str(len(m[0])))
 
         return m
+
+
 
     def build_edit_trail(self, src, dst):
         """[FUNCTIONS] エディットグラフを終端（最も右下）から左上にたどり、
