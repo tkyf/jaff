@@ -22,6 +22,8 @@ class Table(object):
     """Table for calcuration global alignment by dynamic programming.
     """
 
+    blank = "\t"
+
     class Cell(object):
         """One of cell in tabel.
         """
@@ -117,12 +119,12 @@ class Table(object):
             if (current_cell.row - prev_cell.row) == 1:
                 aligned_str2 = self.str2[current_cell.row - 1] + aligned_str2
             else:
-                aligned_str2 = '-' + aligned_str2
+                aligned_str2 = self.blank + aligned_str2
 
             if (current_cell.col - prev_cell.col) == 1:
                 aligned_str1 = self.str1[current_cell.col - 1] + aligned_str1
             else:
-                aligned_str1 = '-' + aligned_str1
+                aligned_str1 = self.blank + aligned_str1
 
             current_cell = current_cell.prev_cell
 
