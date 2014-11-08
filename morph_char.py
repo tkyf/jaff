@@ -60,17 +60,3 @@ def str_to_morphed_chars(src):
             for i in range(0, n - 1):
                 cs.append(MorphedChar(feature[0][i+1], feature[pos_index], u'I'))
     return cs
-
-
-def main():
-    src = u'庭には二羽にわとりがいる'
-    print(src)
-    morphed_chars = str_to_morphed_chars(src)
-    for morphed_char in morphed_chars:
-        print(morphed_char.surface, morphed_char.pos, morphed_char.position)
-
-
-if __name__ == "__main__":
-    main()
-
-
