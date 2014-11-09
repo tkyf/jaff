@@ -5,6 +5,7 @@
 def main():
     import sys
 
+    import morph_char
     import alignment.align
 
     if len(sys.argv) != 3:
@@ -16,6 +17,11 @@ def main():
 
     a = alignment.align.align(base, target)
     print(a)
+
+    mb = morph_char.str_to_morphed_chars(base)
+    print(mb)
+    mt = morph_char.str_to_morphed_chars(target)
+    print(mt)
 
     return 0
 
