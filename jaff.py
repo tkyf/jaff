@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding:utf-8
 
+def jaff():
+    return ""
+
 
 def main():
     import sys
