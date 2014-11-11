@@ -33,7 +33,7 @@ class MorphedChar:
         self.position = position  # B:先頭，I:文中
 
 
-def str_to_morphed_chars(src):
+def tagging(src):
     """[FUNCTIONS]文字列を受け取り，MeCabで形態素解析して、
     MorphedCharのリストにして返す
 
