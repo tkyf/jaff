@@ -1,14 +1,21 @@
 #!/usr/bin/env python
 # coding:utf-8
 
-def jaff():
+def jaff(str1, str2):
+    import mecab_wrapper
+    import alignment.align
+
+    a = alignment.align.align(str1, str2)
+    m = mecab_wrapper.tagging(str1)
+    print(a)
+    print(m)
     return ""
 
 
 def main():
     import sys
 
-    import morph_char
+    import mecab_wrapper
     import alignment.align
 
     if len(sys.argv) != 3:
@@ -21,9 +28,9 @@ def main():
     a = alignment.align.align(base, target)
     print(a)
 
-    mb = morph_char.str_to_morphed_chars(base)
+    mb = mecab_wrapper.tagging(base)
     print(mb)
-    mt = morph_char.str_to_morphed_chars(target)
+    mt = mecab_wrapper.tagging(target)
     print(mt)
 
     return 0
