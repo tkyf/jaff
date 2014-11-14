@@ -9,7 +9,15 @@ def jaff(str1, str2):
     m = mecab_wrapper.tagging(str1)
     print(a)
     print(m)
+    pos_align(a, m)
+    print(m)
     return ""
+
+def pos_align(alignment, tags, blank="\t"):
+    for i, c in enumerate(alignment[0]):
+        if c == blank:
+            tags.insert(i, None)
+
 
 
 def main():
