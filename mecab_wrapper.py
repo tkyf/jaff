@@ -49,14 +49,15 @@ def tagging(src):
     splited = morphed.split(u'\n')
 
     cs = []
-    for l in splited:
-        if l.startswith(u'EOS'):
+    for L in splited:
+        if L.startswith(u'EOS'):
             break
-        feature = l.split(u'\t')
+        feature = L.split(u'\t')
         cs.append(MorphedChar(feature[0][0], feature[pos_index], u'B'))
 
         n = len(feature[0])
-        if n > 1:  # 2文字以上からなる単語の場合
+        # 2文字以上からなる単語の場合
+        if n > 1:
             for i in range(0, n - 1):
                 cs.append(MorphedChar(feature[0][i+1], feature[pos_index], u'I'))
     return cs
