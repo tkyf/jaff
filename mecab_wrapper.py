@@ -1,4 +1,5 @@
 #encoding: utf-8
+
 import MeCab
 
 pos_index = 0
@@ -9,55 +10,53 @@ except RuntimeError:
     tagger = MeCab.Tagger('-Ounidic')
     pos_index = 4
 
-
-class MorphedChar:
-    """[CLASSES] 形態素解析された一つの文字を表す．
-    この文字は品詞と単語中での位置を持つ
-    """
-    def __init__(self, surface, pos, position):
-        """[FUNCTIONS] 文字の表層、品詞、単語内での位置を受け取り格納する
-
-        Keyword arguments:
-        sruface -- surface of charactor : unicode
-        pos     -- surface of word      : unicode
-        position -- position of charactor in word. :unicode
-                    B: begin of word. I: inter of word.
-
-        例： surface  : 人
-             pos      : 名詞
-             position : B
-        """
-
-        self.surface = surface
-        self.pos = pos
-        self.position = position  # B:先頭，I:文中
-
-
 def tagging(src):
-    """[FUNCTIONS]文字列を受け取り，MeCabで形態素解析して、
-    MorphedCharのリストにして返す
+
+    """[FUNCTIONS] 文字列を受け取り， MeCab で形態素解析して、
+    dict の list にして返す。
+    dict は文字列中の1文字を表す。
+    dict は以下の key を持つ。
+      surface : 1文字の表層
+      pos     : 形態素解析によって品詞
+      position: 単語中の位置（I：単語の先頭または中間。 E：単語の末尾） 
 
     Keyword arguments:
     src       -- 文字列
 
     Return value:
-    [MorphedChar]
+    [dict]
 
     """
-    morphed = tagger.parse(src)
+    tagged = tagger.parse(src)
+    word_list = tagged.split(u'\n')
 
-    splited = morphed.split(u'\n')
-
-    cs = []
-    for L in splited:
+    character_list = [] 
+    for L in word_list:
+        d = {}
         if L.startswith(u'EOS'):
             break
         feature = L.split(u'\t')
-        cs.append(MorphedChar(feature[0][0], feature[pos_index], u'B'))
+        d['surface'] = feature[0][0]
+        d['pos']     = feature[pos_index]
 
+        # 単語の文字数を取得
         n = len(feature[0])
+        if n == 1 :
+            d['position'] = 'E'
+        else:
+            d['position'] = 'I'
+
+        character_list.append(d)
+
         # 2文字以上からなる単語の場合
         if n > 1:
             for i in range(0, n - 1):
-                cs.append(MorphedChar(feature[0][i+1], feature[pos_index], u'I'))
-    return cs
+                d = {}
+                d['surface'] = feature[0][i + 1]
+                d['pos']     = feature[pos_index]
+                if i == (n - 1):
+                    d['position'] = 'E'
+                else:
+                    d['position'] = 'I'
+                character_list.append(d)
+    return character_list
