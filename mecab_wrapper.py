@@ -30,33 +30,40 @@ def tagging(src):
     tagged = tagger.parse(src)
     word_list = tagged.split(u'\n')
 
-    character_list = [] 
-    for L in word_list:
-        d = {}
-        if L.startswith(u'EOS'):
+    character_dict_list = [] 
+    for word in word_list:
+        if word.startswith('EOS'):
             break
-        feature = L.split(u'\t')
-        d['surface'] = feature[0][0]
-        d['pos']     = feature[pos_index]
+        character_dict_list += characterize(word)
+    return character_dict_list
 
-        # 単語の文字数を取得
-        n = len(feature[0])
-        if n == 1 :
-            d['position'] = 'E'
-        else:
-            d['position'] = 'I'
+def characterize(word):
+    rv = []
 
-        character_list.append(d)
+    d = {}
+    feature = word.split(u'\t')
+    d['surface'] = feature[0][0]
+    d['pos']     = feature[pos_index]
 
-        # 2文字以上からなる単語の場合
-        if n > 1:
-            for i in range(0, n - 1):
-                d = {}
-                d['surface'] = feature[0][i + 1]
-                d['pos']     = feature[pos_index]
-                if i == (n - 1):
-                    d['position'] = 'E'
-                else:
-                    d['position'] = 'I'
-                character_list.append(d)
-    return character_list
+    # 単語の文字数を取得
+    n = len(feature[0])
+    if n == 1 :
+        d['position'] = 'E'
+    else:
+        d['position'] = 'I'
+
+    rv.append(d)
+
+    # 2文字以上からなる単語の場合
+    if n > 1:
+        for i in range(0, n - 1):
+            d = {}
+            d['surface'] = feature[0][i + 1]
+            d['pos']     = feature[pos_index]
+            if i == (n - 1):
+                d['position'] = 'E'
+            else:
+                d['position'] = 'I'
+            rv.append(d)
+    return rv
+
