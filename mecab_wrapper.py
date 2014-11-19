@@ -60,7 +60,7 @@ def characterize(word):
             d = {}
             d['surface'] = feature[0][i + 1]
             d['pos']     = feature[pos_index]
-            if i == (n - 1):
+            if i == (n - 2):
                 d['position'] = 'E'
             else:
                 d['position'] = 'I'
