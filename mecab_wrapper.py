@@ -39,31 +39,17 @@ def tagging(src):
 
 def characterize(word):
     rv = []
-
-    d = {}
     feature = word.split(u'\t')
-    d['surface'] = feature[0][0]
-    d['pos']     = feature[pos_index]
 
-    # 単語の文字数を取得
-    n = len(feature[0])
-    if n == 1 :
-        d['position'] = 'E'
-    else:
-        d['position'] = 'I'
+    word_length = len(feature[0])
+    for i in range(word_length):
+        d = {}
+        d['surface'] = feature[0][i]
+        d['pos']     = feature[pos_index]
+        if i == word_length - 1:
+            d['position'] = 'E'
+        else:
+            d['position'] = 'I'
+        rv.append(d)
 
-    rv.append(d)
-
-    # 2文字以上からなる単語の場合
-    if n > 1:
-        for i in range(0, n - 1):
-            d = {}
-            d['surface'] = feature[0][i + 1]
-            d['pos']     = feature[pos_index]
-            if i == (n - 2):
-                d['position'] = 'E'
-            else:
-                d['position'] = 'I'
-            rv.append(d)
     return rv
-
