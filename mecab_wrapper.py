@@ -53,3 +53,9 @@ def characterize(word):
         rv.append(d)
 
     return rv
+
+
+if __name__ == '__main__':
+    import sys
+    print(tagging(sys.argv[1]))
+
