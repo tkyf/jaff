@@ -21,7 +21,7 @@ class Test(unittest.TestCase):
 
     def test_compare(self):
         for (i, e) in zip (self.input, self.expect):
-            self.assertEqual(jaff.jaff(i[0][0], i[0][1]), e)
+            self.assertEqual(jaff.jaff(i[0], i[1]), e)
 
 
 if __name__ == "__main__":
