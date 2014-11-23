@@ -7,8 +7,8 @@ def jaff(str1, str2):
 
     a = alignment.align.align(str1, str2)
     m = mecab_wrapper.tagging(str1)
-    print(a)
     pos_alignment = pos_align(a, m)
+
     return (a[0], a[1], pos_alignment)
 
 def pos_align(alignment, tags, blank="\t"):
@@ -29,8 +29,8 @@ def main():
     import sys
 
     if len(sys.argv) != 3:
-        print("Usage: $ python jaff.py textfile1 textfile2")
-        return 1
+        print("Usage: $ python jaff.py base_string target_string")
+        sys.exit()
 
     base = sys.argv[1]
     target = sys.argv[2]
