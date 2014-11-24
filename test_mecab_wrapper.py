@@ -7,6 +7,7 @@ import mecab_wrapper
 
 class MeCabWrpperTest(unittest.TestCase):
     
+# for MeCab UniDic Dictionary
     def setUp(self):
         self.inputs = ['こんにちは', 'こんにちは、私は元気です。']
         self.answers= [[{'surface': 'こ', 'position': 'I', 'pos': '感動詞'}, {'surface': 'ん', 'position': 'I', 'pos': '感動詞'}, {'surface': 'に', 'position': 'I', 'pos': '感動詞'}, {'surface': 'ち', 'position': 'I', 'pos': '感動詞'}, {'surface': 'は', 'position': 'E', 'pos': '感動詞'}],
