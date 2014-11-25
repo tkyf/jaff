@@ -9,22 +9,31 @@ def jaff(str1, str2):
     m = mecab_wrapper.tagging(str1)
     pos_alignment = pos_align(a, m)
     
-
-    return (a[0], a[1], pos_alignment)
+    return (pos_alignment)
 
 def pos_align(alignment, tags, blank="\t"):
     for i, c in enumerate(alignment[0]):
         if c == blank:
             tags.insert(i, None)
 
-    pos_alignment = ''
-    for tag in tags:
+    base_word_list = []
+    target_word_list = []
+    pos_list = []
+    base_word = ''
+    target_word = ''
+    for j, (base_char, target_char, tag) in enumerate(zip(alignment[0], alignment[1], tags)):
+        base_word += base_char
+        target_word += target_char
         if tag is None:
-            pos_alignment += blank
+            pass
         elif  tag['position'] == 'E':
-            pos_alignment += tag['pos']
+            base_word_list.append(base_word)
+            target_word_list.append(target_word)
+            pos_list.append(tag['pos'])
+            base_word = ''
+            target_word = ''
 
-    return pos_alignment
+    return base_word_list, target_word_list, pos_list
 
 def main():
     import sys
