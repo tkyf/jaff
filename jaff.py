@@ -8,6 +8,7 @@ def jaff(str1, str2):
     a = alignment.align.align(str1, str2)
     m = mecab_wrapper.tagging(str1)
     pos_alignment = pos_align(a, m)
+    
 
     return (a[0], a[1], pos_alignment)
 
