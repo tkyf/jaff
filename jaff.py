@@ -11,7 +11,7 @@ def jaff(str1, str2):
     
     return (pos_alignment)
 
-def pos_align(alignment, tags, blank="\t"):
+def pos_align(alignment, tags, blank="\t", delimiter="\t"):
     for i, c in enumerate(alignment[0]):
         if c == blank:
             tags.insert(i, None)
@@ -27,13 +27,16 @@ def pos_align(alignment, tags, blank="\t"):
         if tag is None:
             pass
         elif  tag['position'] == 'E':
+            base_word = base_word.replace(blank, "")
+            target_word = target_word.replace(blank, "")
             base_word_list.append(base_word)
             target_word_list.append(target_word)
             pos_list.append(tag['pos'])
             base_word = ''
             target_word = ''
 
-    return base_word_list, target_word_list, pos_list
+
+    return delimiter.join(base_word_list), delimiter.join(target_word_list), delimiter.join(pos_list)
 
 def main():
     import sys
