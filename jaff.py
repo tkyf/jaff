@@ -21,6 +21,7 @@ def pos_align(alignment, tags, blank="\t", delimiter="\t"):
     pos_list = []
     base_word = ''
     target_word = ''
+
     for j, (base_char, target_char, tag) in enumerate(zip(alignment[0], alignment[1], tags)):
         base_word += base_char
         target_word += target_char
@@ -35,6 +36,8 @@ def pos_align(alignment, tags, blank="\t", delimiter="\t"):
             base_word = ''
             target_word = ''
 
+    if target_word != "":
+        target_word_list[-1] += target_word
 
     return delimiter.join(base_word_list), delimiter.join(target_word_list), delimiter.join(pos_list)
 
