@@ -12,7 +12,11 @@ def jaff(str1, str2):
     return (pos_alignment)
 
 def pos_align(alignment, tags, blank="\t", delimiter="\t"):
-    for i, c in enumerate(alignment[0]):
+    base_string = alignment[0] 
+    target_string = alignment[1] 
+
+
+    for i, c in enumerate(base_string):
         if c == blank:
             tags.insert(i, None)
 
@@ -22,7 +26,7 @@ def pos_align(alignment, tags, blank="\t", delimiter="\t"):
     base_word = ''
     target_word = ''
 
-    for j, (base_char, target_char, tag) in enumerate(zip(alignment[0], alignment[1], tags)):
+    for j, (base_char, target_char, tag) in enumerate(zip(base_string, target_string, tags)):
         base_word += base_char
         target_word += target_char
         if tag is None:
