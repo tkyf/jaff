@@ -2,11 +2,11 @@
 # coding:utf-8
 
 def jaff(str1, str2):
-    import mecab_wrapper
-    import alignment.align
+    from src.mecab_wrapper import tagging
+    from src.align         import align
 
-    a = alignment.align.align(str1, str2)
-    m = mecab_wrapper.tagging(str1)
+    a = align(str1, str2)
+    m = tagging(str1)
     pos_alignment = pos_align(a, m)
     
     return (pos_alignment)
