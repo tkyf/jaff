@@ -1,6 +1,6 @@
 #Jaff
 
-日本語添削文単語アライメント
+日本語添削文の単語アライメント
 
 ## Usage
     python jaff.py string1 string2
