@@ -1,6 +1,6 @@
 #Jaff
 
-形態素単位の日本語アライメント
+日本語添削文の単語アライメント
 
 ## Usage
     python jaff.py string1 string2
