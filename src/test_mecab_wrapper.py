@@ -6,19 +6,33 @@ import unittest
 import mecab_wrapper
 
 class MeCabWrpperTest(unittest.TestCase):
-    
 # for MeCab UniDic Dictionary
     def setUp(self):
-        self.inputs = ['こんにちは', 'こんにちは、私は元気です。']
-        self.answers= [[{'surface': 'こ', 'position': 'I', 'pos': '感動詞'}, {'surface': 'ん', 'position': 'I', 'pos': '感動詞'}, {'surface': 'に', 'position': 'I', 'pos': '感動詞'}, {'surface': 'ち', 'position': 'I', 'pos': '感動詞'}, {'surface': 'は', 'position': 'E', 'pos': '感動詞'}],
-                [{'surface': 'こ', 'position': 'I', 'pos': '感動詞'}, {'surface': 'ん', 'position': 'I', 'pos': '感動詞'},\
-                        {'surface': 'に', 'position': 'I', 'pos': '感動詞'}, {'surface': 'ち', 'position': 'I', 'pos': '感動詞'},\
-                        {'surface': 'は', 'position': 'E', 'pos': '感動詞'}, {'surface': '、', 'pos': '記号-読点', 'position':'E'},\
-                        {'surface': '私', 'pos': '名詞-代名詞-一般', 'position': 'E'}, {'surface': 'は', 'pos': '助詞-係助詞', 'position': 'E'},\
-                        {'surface': '元', 'pos': '名詞-形容動詞語幹', 'position': 'I'}, {'surface': '気', 'pos': '名詞-形容動詞語幹', 'position': 'E'},\
-                        {'surface': 'で', 'pos': '助動詞', 'position': 'I'}, {'surface':'す', 'pos': '助動詞', 'position': 'E'},\
-                        {'surface': '。', 'pos': '記号-句点', 'position': 'E'}]
-                ]
+        import MeCab
+
+        try:
+            tagger = MeCab.Tagger('-Ochasen')
+            self.inputs = ['こんにちは', 'こんにちは、私は元気です。']
+            self.answers= [[{'surface': 'こ', 'position': 'I', 'pos': '感動詞'}, {'surface': 'ん', 'position': 'I', 'pos': '感動詞'}, {'surface': 'に', 'position': 'I', 'pos': '感動詞'}, {'surface': 'ち', 'position': 'I', 'pos': '感動詞'}, {'surface': 'は', 'position': 'E', 'pos': '感動詞'}],
+                    [{'surface': 'こ', 'position': 'I', 'pos': '感動詞'}, {'surface': 'ん', 'position': 'I', 'pos': '感動詞'},\
+                            {'surface': 'に', 'position': 'I', 'pos': '感動詞'}, {'surface': 'ち', 'position': 'I', 'pos': '感動詞'},\
+                            {'surface': 'は', 'position': 'E', 'pos': '感動詞'}, {'surface': '、', 'pos': '記号-読点', 'position':'E'},\
+                            {'surface': '私', 'pos': '名詞-代名詞-一般', 'position': 'E'}, {'surface': 'は', 'pos': '助詞-係助詞', 'position': 'E'},\
+                            {'surface': '元', 'pos': '名詞-形容動詞語幹', 'position': 'I'}, {'surface': '気', 'pos': '名詞-形容動詞語幹', 'position': 'E'},\
+                            {'surface': 'で', 'pos': '助動詞', 'position': 'I'}, {'surface':'す', 'pos': '助動詞', 'position': 'E'},\
+                            {'surface': '。', 'pos': '記号-句点', 'position': 'E'}]
+                    ]
+        except RuntimeError:
+            self.inputs = ['こんにちは', 'こんにちは、私は元気です。']
+            self.answers= [[{'surface': 'こ', 'position': 'I', 'pos': '感動詞-一般'}, {'surface': 'ん', 'position': 'I', 'pos': '感動詞-一般'}, {'surface': 'に', 'position': 'I', 'pos': '感動詞-一般'}, {'surface': 'ち', 'position': 'I', 'pos': '感動詞-一般'}, {'surface': 'は', 'position': 'E', 'pos': '感動詞-一般'}],
+                    [{'surface': 'こ', 'position': 'I', 'pos': '感動詞-一般'}, {'surface': 'ん', 'position': 'I', 'pos': '感動詞-一般'},\
+                            {'surface': 'に', 'position': 'I', 'pos': '感動詞-一般'}, {'surface': 'ち', 'position': 'I', 'pos': '感動詞-一般'},\
+                            {'surface': 'は', 'position': 'E', 'pos': '感動詞-一般'}, {'surface': '、', 'pos': '補助記号-読点', 'position':'E'},\
+                            {'surface': '私', 'pos': '代名詞', 'position': 'E'}, {'surface': 'は', 'pos': '助詞-係助詞', 'position': 'E'},\
+                            {'surface': '元', 'pos': '名詞-普通名詞-形状詞可能', 'position': 'I'}, {'surface': '気', 'pos': '名詞-普通名詞-形状詞可能', 'position': 'E'},\
+                            {'surface': 'で', 'pos': '助動詞', 'position': 'I'}, {'surface':'す', 'pos': '助動詞', 'position': 'E'},\
+                            {'surface': '。', 'pos':'補助記号-句点', 'position': 'E'}]
+                    ]
 
     def test_tagging(self):
         for in_str, answer in zip(self.inputs, self.answers):
