@@ -8,3 +8,7 @@
 ## Requirements
 - python 3.4 or above
 - mecab-python3
+
+## LICENSE
+
+MIT
