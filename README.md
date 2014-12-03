@@ -7,7 +7,7 @@
 
 ## Requirements
 - python 3.4 or above
-- mecab-python3
+- mecab-python3 ( https://github.com/SamuraiT/mecab-python3 )
 
 ## License
 
